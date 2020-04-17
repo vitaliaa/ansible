@@ -1,10 +1,10 @@
 ---
-- name: TmSoft
+- name: Soft
   hosts: all
   gather_facts: false
 
   vars_prompt:
-    - name: tmsoft_url
+    - name: url
       prompt: "Type of link to download" 
       private: no
 
@@ -12,10 +12,10 @@
     path_win: C:\Temp\install.msi
 
   tasks:
-    - name: Download TmSoft client to host
+    - name: Download Soft to host
       win_get_url:
-        url: "{{ tmsoft_url }}"
+        url: "{{ url }}"
         dest: "{{ path_win }}" 
 
-    - name: Install TmSoft client
+    - name: Install Soft
       win_shell: Install-Package "{{ path_win }}" -force
