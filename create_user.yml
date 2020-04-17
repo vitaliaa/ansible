@@ -1,0 +1,29 @@
+---
+- hosts: all
+  gather_facts: false 
+
+  vars_prompt:
+
+    - name: name
+      prompt: "Type name for new user"
+      private: no
+   
+    - name: password
+      prompt: "Type password for user"
+      private: yes 
+  
+  tasks:
+
+    - name: Create user
+      win_user:
+        name: "{{ name }}" 
+        password: "{{ password }}"
+        state: present
+        description: Test user 
+        fullname: Test Testovich
+        password_never_expires: true
+        user_cannot_change_password: true
+
+        groups:
+          - Users
+          - Remote Desktop Users

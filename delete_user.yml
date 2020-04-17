@@ -1,0 +1,16 @@
+---
+- hosts: all
+  gather_facts: true
+
+  vars_prompt:
+
+  - name: del_user
+    prompt: "Type login user to delete"
+    private: no  
+
+  tasks:
+
+    - name: Delete user
+      win_user:
+        name: "{{ del_user }}"
+        state: absent 
